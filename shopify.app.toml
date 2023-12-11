@@ -2,7 +2,7 @@
 
 name = "Delivery-timer-order-timeline"
 client_id = "62de78c7cc6d1b1ee9901e2c585e0169"
-application_url = "https://champagne-print-blog-consist.trycloudflare.com"
+application_url = "https://distributed-dealt-logan-inclusive.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "read_products,write_products"
 
 [auth]
 redirect_urls = [
-  "https://champagne-print-blog-consist.trycloudflare.com/auth/callback",
-  "https://champagne-print-blog-consist.trycloudflare.com/auth/shopify/callback",
-  "https://champagne-print-blog-consist.trycloudflare.com/api/auth/callback",
-  "https://champagne-print-blog-consist.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://distributed-dealt-logan-inclusive.trycloudflare.com/auth/callback",
+  "https://distributed-dealt-logan-inclusive.trycloudflare.com/auth/shopify/callback",
+  "https://distributed-dealt-logan-inclusive.trycloudflare.com/api/auth/callback",
+  "https://distributed-dealt-logan-inclusive.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]

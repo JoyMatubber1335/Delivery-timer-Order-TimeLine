@@ -14,7 +14,10 @@ export const QUERY_PRODUCT = `query GetProducts ($input: Int, $query: String!) {
         totalInventory
         status
         legacyResourceId
-        
+        featuredImage {
+          id
+          url
+        }
       }
       cursor
     }
@@ -36,6 +39,10 @@ export const QUERY_NEXT_ORDERS = `query GetProducts($first: Int, $after: String,
         totalInventory
         status
         legacyResourceId
+          featuredImage {
+          id
+          url
+        }
         
       }
       cursor
@@ -59,6 +66,10 @@ export const QUERY_PREVIOUS_ORDERS = `query GetProducts($last: Int, $before: Str
         totalInventory
         status
         legacyResourceId
+        featuredImage {
+          id
+          url
+        }
       }
       cursor
     }

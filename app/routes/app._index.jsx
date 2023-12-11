@@ -18,6 +18,7 @@ import {
   Button,
   Spinner,
   Badge,
+  Thumbnail,
   useIndexResourceState,
   IndexFilters,
   useSetIndexFiltersMode,
@@ -35,7 +36,7 @@ import {
   QUERY_PREVIOUS_ORDERS,
 } from "utils/queries";
 
-const PER_PAGE_PRODUCT_TO_SHOW = 2;
+const PER_PAGE_PRODUCT_TO_SHOW = 10;
 
 export const loader = async ({ request }) => {
   const { admin, session } = await authenticate.admin(request);
@@ -291,6 +292,11 @@ export default function Index() {
           headings={[
             {
               title: (
+                <span style={{ fontWeight: "bold", fontSize: "13px" }}></span>
+              ),
+            },
+            {
+              title: (
                 <span style={{ fontWeight: "bold", fontSize: "13px" }}>
                   Product
                 </span>
@@ -356,6 +362,32 @@ export default function Index() {
                       product?.legacyResourceId
                     )}
                   >
+                    {/* {renderTableCell(
+                      // @ts-ignore
+                     
+                    { 
+                      product?.featuredImage &&(
+                        <Thumbnail
+                      source={p.image.src}
+                      alt={p.image.alt}
+                      size="large"
+                    />
+                      )
+
+                    }
+                    )} */}
+                    {renderTableCell(
+                      <div>
+                        {product?.featuredImage && (
+                          <Thumbnail
+                            source={product.featuredImage.url}
+                            alt={product.title}
+                            size="small"
+                          />
+                        )}
+                      </div>
+                    )}
+
                     {renderTableCell(
                       // @ts-ignore
                       product?.title
