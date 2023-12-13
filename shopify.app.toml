@@ -2,7 +2,7 @@
 
 name = "Delivery-timer-order-timeline"
 client_id = "62de78c7cc6d1b1ee9901e2c585e0169"
-application_url = "https://headphones-h-bits-springs.trycloudflare.com"
+application_url = "https://answering-middle-arrested-leading.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "read_products,write_products"
 
 [auth]
 redirect_urls = [
-  "https://headphones-h-bits-springs.trycloudflare.com/auth/callback",
-  "https://headphones-h-bits-springs.trycloudflare.com/auth/shopify/callback",
-  "https://headphones-h-bits-springs.trycloudflare.com/api/auth/callback",
-  "https://headphones-h-bits-springs.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://answering-middle-arrested-leading.trycloudflare.com/auth/callback",
+  "https://answering-middle-arrested-leading.trycloudflare.com/auth/shopify/callback",
+  "https://answering-middle-arrested-leading.trycloudflare.com/api/auth/callback",
+  "https://answering-middle-arrested-leading.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]
