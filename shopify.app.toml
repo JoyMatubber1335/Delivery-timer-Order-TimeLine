@@ -2,7 +2,7 @@
 
 name = "Delivery-timer-order-timeline"
 client_id = "62de78c7cc6d1b1ee9901e2c585e0169"
-application_url = "https://providers-referral-scanning-reviewed.trycloudflare.com"
+application_url = "https://gmbh-dicke-contract-hyundai.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "read_products,write_products"
 
 [auth]
 redirect_urls = [
-  "https://providers-referral-scanning-reviewed.trycloudflare.com/auth/callback",
-  "https://providers-referral-scanning-reviewed.trycloudflare.com/auth/shopify/callback",
-  "https://providers-referral-scanning-reviewed.trycloudflare.com/api/auth/callback",
-  "https://providers-referral-scanning-reviewed.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://gmbh-dicke-contract-hyundai.trycloudflare.com/auth/callback",
+  "https://gmbh-dicke-contract-hyundai.trycloudflare.com/auth/shopify/callback",
+  "https://gmbh-dicke-contract-hyundai.trycloudflare.com/api/auth/callback",
+  "https://gmbh-dicke-contract-hyundai.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]
