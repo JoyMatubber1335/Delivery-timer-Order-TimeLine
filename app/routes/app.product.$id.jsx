@@ -113,6 +113,40 @@ export const action = async ({ request, params }) => {
   //   });
   //   console.log(create);
   // }
+  console.log(formData.deliveryDate);
+
+  if (shopID) {
+    const productID = String(formData.productId);
+    const deliveryTime = new Date(`${formData.deliveryDate} UTC`);
+    console.log(deliveryTime);
+    // const deliveryTime = new Date(`${formData.deliveryDate} UTC`);
+
+    const existingProductReport = await prisma.productreport.findFirst({
+      where: { productId: productID, shopId: shopID },
+    });
+    console.log(existingProductReport);
+
+    if (existingProductReport) {
+      const update = await prisma.productreport.update({
+        where: { productId: productID },
+        data: {
+          shopId: shopID,
+          deliveryTime: deliveryTime,
+        },
+      });
+      console.log(update);
+    } else {
+      const create = await prisma.productreport.create({
+        data: {
+          productId: productID,
+          shopId: shopID,
+          deliveryTime: deliveryTime,
+        },
+      });
+      console.log(create);
+    }
+  }
+
   let orderStatusValue = null;
   let deliveryDateValue = null;
   console.log(formData.selectedCountry);

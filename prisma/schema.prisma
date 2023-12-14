@@ -23,7 +23,7 @@ model Session {
 
 model Productreport {
   id     Int    @id @default(autoincrement())
-  productId String
+  productId String  @unique
   shopId   String
   deliveryTime  DateTime 
 }
