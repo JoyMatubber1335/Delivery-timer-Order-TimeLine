@@ -1,0 +1,18 @@
+{
+  "countdown": {
+    "day": "Day",
+    "hours": "Hrs",
+    "minutes": "Min",
+    "seconds": "Sec",
+    "invalid_message": "Invalid input!",
+    "Invalid_enddate": "Time already elapsed!",
+    "modal_close_meassage": "Close and put valid input"
+  },
+  "product_timeline": {
+    "free_shipping": "Free Shipping to  ",
+    "order_offer_start_text": "Order within the next ",
+    "order_offer_end_text": "for dispatch today ",
+    "order_recive": "You'll recive your packeg",
+    "all_ofer_text": "If you went to dispatch today order within the next : "
+  }
+}

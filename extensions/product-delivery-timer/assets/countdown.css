@@ -1,0 +1,104 @@
+.countdown__datatime {
+  display: none;
+}
+.countdown__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.countdown__container .countdown-text {
+  width: 35%;
+}
+
+.countdown__container .countdown-watch {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  border-radius: 6px;
+  gap: 5px;
+}
+
+.countdown-watch p {
+  font-size: 17px;
+}
+
+.countdown-watch h3 {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.countdown-watch .time-label {
+  background-color: rgba(var(--color-foreground), 0.05);
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 23%;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.invalide__input-popup {
+  justify-content: center;
+  align-items: center;
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(var(--color-foreground), 0.8);
+}
+
+.popup-content {
+  background: rgb(var(--color-background));
+  background: var(--gradient-background);
+  width: 40%;
+  margin: 100px auto;
+  padding: 45px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.close-popup-icon {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: calc(var(--font-body-scale) * 2.5rem);
+  cursor: pointer;
+}
+
+.popup-message h2 {
+  margin-bottom: 0.5rem;
+}
+
+.popup-message p {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 900px) {
+  .countdown-watch p {
+    font-size: 17px;
+    font-weight: bold;
+  }
+}
+@media screen and (max-width: 768px) {
+  .popup-content {
+    width: 60%;
+    padding: 40px;
+  }
+}
+@media screen and (max-width: 525px) {
+  .popup-content {
+    width: 80%;
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .popup-content {
+    width: 90%;
+    padding: 40px;
+  }
+}

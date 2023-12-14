@@ -1,0 +1,302 @@
+
+{{ 'product-delivery-timeline.css' | asset_url | stylesheet_tag }}
+
+
+
+
+{{ 'countdown.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+   .product__delivery-timeline{
+    padding-top:{{ block.settings.padding_top }}px;
+    padding-bottom:{{ block.settings.padding_bottom }}px; 
+    color:{{ block.settings.foreground_color }};
+    background-color:{{ block.settings.background_color }};
+    margin:0 auto;
+    width:98%;
+   }
+
+
+  .countdown-{{ section.id }} {
+  
+    position:relative;
+  }
+
+  .product__delivery-progressbar{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid {{ block.settings.foreground_color }};
+    padding: 1px;
+    width: 99%;
+    margin: 0 auto;
+  }
+
+  .countdownTitle{
+    font-size:20px;
+  }
+
+
+  .countdown-watch{
+    display:flex;
+    gap:6px;
+    width:90%;
+    margin:0 auto;
+    padding:5px;
+    border:1px solid  {{ block.settings.foreground_color }};
+  }
+
+  .progerss__bar-item{
+    margin:0 !important;
+  }
+  .order__place,
+  .order__ready,
+  .order__delivery{
+    text-align:center;
+    font-weight:bold;
+  }
+  .progress-separator {
+    width: 3px;
+    height:118px; 
+    background-color: {{ block.settings.foreground_color }}; 
+    position:relative;
+  }
+  .progress-separator svg{
+    position: absolute;
+    top: 36%;
+    right: -17px;
+    left: -2px
+  }
+
+  .order__place svg,
+  .order__ready svg,
+  .order__delivery svg{
+    fill:{{block.settings.icon_color }} !important;
+  }
+
+  @media screen and (max-width:768px){
+    .countdown-{{ section.id }} .countdown__container {
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .countdown-{{ section.id }} .countdown__container .countdown-text {
+      width: 40%;
+    }
+
+    /* .countdown-{{ section.id }} .countdown__container .countdown-watch{
+      margin-top: 3rem;
+    } */
+
+    .countdown-{{ section.id }} .countdown-watch p {
+      font-size: 17px;
+    }
+
+  }
+  @media screen and (max-width:600px){
+    .countdown-{{ section.id }} .countdown-watch p {
+      font-size: 17px;
+    }
+
+    .countdown-{{ section.id }} .countdown__container .countdown-text {
+      width: 45%;
+    }
+
+    /* .countdown-{{ section.id }} .countdown__container .countdown-watch{
+      padding: 2rem 1rem
+    } */
+
+    .countdown-{{ section.id }} .countdown-watch h2 {
+      font-size: calc(var(--font-heading-scale));
+    }
+  }
+
+  @media screen and (max-width:425px){
+   .countdown-{{ section.id }} .countdown__container .countdown-text {
+      width: 80%;
+    }
+
+    /* .countdown-{{ section.id }} .countdown__container .countdown-watch{
+      width:100%;
+    } */
+
+    .countdown-watch .time-label{
+
+      width:24%;
+    }
+  }
+{% endstyle %}
+
+{% assign productMetafieldData = product.metafields.productSetting.productSettingSet.value %}
+  <div class="product-metafield-data-json">
+   <p>{{ productMetafieldData | json }}</p>
+  </div>
+
+<div
+  class="countdown countdown-{{ section.id }} "
+>
+
+  <div class="countdown__datatime">
+    <div class="end-date">{{ block.settings.end_date }}</div>
+    <div class="end-time">{{ block.settings.end_time}}</div>
+  </div>
+
+  <div class="product__delivery-timeline">
+    <p  class="free__shipping-country">{{ 'product_timeline.free_shipping' | t }} <b>{{ productMetafieldData.selectedCountry }} </b></p> 
+    <p>{{ 'product_timeline.all_ofer_text' | t }}</p> 
+
+    <div class="countdown-watch">
+      <div class="time-label">
+        <p class="countdown-day"></p>
+        <p class="countdownTitle">{{ 'countdown.day' | t }}</p>
+      </div>
+      <div class="time-label">
+        <p class="countdown-hours"></p>
+        <p class="countdownTitle">{{ 'countdown.hours' | t }}</p>
+      </div>
+      <div class="time-label">
+        <p class="countdown-minutes"></p>
+        <p class="countdownTitle">{{ 'countdown.minutes' | t }}</p>
+      </div>
+      <div class="time-label">
+        <p class="countdown-seconds"></p>
+        <p class="countdownTitle">{{ 'countdown.seconds' | t }}</p>
+      </div>
+    </div>
+
+    <p>{{ 'product_timeline.order_recive' | t }} <b>{{ productMetafieldData.deliveryDate }}</b></p>
+     
+    {% comment %} <div class="product__delivery-progressbar">
+      <div class="order__place">
+         {% render 'icon-shopping-bag' %}
+         <p class="progerss__bar-item">Ordered</p>
+         <p class="progerss__bar-item">{{ "now" | date: "%b %d, %Y" }}</p>
+      </div>
+       <div class="order__ready">
+        {% render 'icon-truck' %}
+          <p class="progerss__bar-item">Order Ready</p>
+          <p class="progerss__bar-item">{{ productMetafieldData.orderReadyDate | date: "%b %d, %Y" }}</p>
+      </div>
+       <div class="order__delivery">
+        {% render 'icon-building-office' %}
+          <p class="progerss__bar-item">Delivered</p>
+          <p class="progerss__bar-item">{{ productMetafieldData.deliveryDate | date: "%b %d, %Y" }}</p>
+      </div>
+     
+    </div> {% endcomment %}
+    <div class="product__delivery-progressbar">
+  <div class="order__place">
+    {% render 'icon-shopping-bag' %}
+    <p class="progerss__bar-item">Ordered</p>
+    <p class="progerss__bar-item">{{ "now" | date: "%b %d, %Y" }}</p>
+  </div>
+  <div class="progress-separator">
+    {% render 'icon-arrow-right' %} <!-- Add a separator div for better spacing -->
+  </div>
+  <div class="order__ready">
+    {% render 'icon-truck' %}
+    <p class="progerss__bar-item">Order Ready</p>
+    <p class="progerss__bar-item">{{ productMetafieldData.orderReadyDate | date: "%b %d, %Y" }}</p>
+  </div>
+  <div class="progress-separator">
+    {% render 'icon-arrow-right' %} 
+  </div>
+  <div class="order__delivery">
+    {% render 'icon-building-office' %}
+    <p class="progerss__bar-item">Delivered</p>
+    <p class="progerss__bar-item">{{ productMetafieldData.deliveryDate | date: "%b %d, %Y" }}</p>
+  </div>
+</div>
+
+    <div class="invalide__input-popup ">
+      <div class="popup-content">
+        <span class="close-popup-icon">
+          {%- render 'icon-close' -%}
+        </span>
+        <div class="popup-message">
+          <h2 class="popup-show-message">{{ 'countdown.invalid_message' | t }}</h2>
+          <h2 class="popup-show-message-enddate">{{ 'countdown.Invalid_enddate' | t }}</h2>
+          <p>{{ 'countdown.modal_close_meassage' | t }}</p>
+        </div>
+       </div>
+    </div>
+  </div>
+  
+
+
+  
+<script src="{{ 'countdown.js' | asset_url }}" defer="defer"></script>
+
+
+{% schema %}
+{
+  "name": "t:product_timeline.name",
+  "target": "section",
+  "settings": [
+     {
+      "type": "header",
+      "content": "t:product_timeline.settings.end_date_time.label"
+    },
+    
+    {
+      "type": "text",
+      "id": "end_date",
+      "default": "2023-12-1",
+      "label": "t:product_timeline.settings.end_date_time.end_date"
+    },
+      {
+      "type": "text",
+      "id": "end_time",
+      "default": "10:45",
+      "label": "t:product_timeline.settings.end_date_time.end_time"
+    },
+
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Product delivery timeline",
+      "label": "t:product_timeline.settings.title"
+    },
+
+    { 
+      "type": "color",
+      "id": "background_color",
+      "label": "t:product_timeline.settings.background_color", 
+      "default": "#FFFFFF" 
+    },
+    
+    { 
+      "type": "color",
+      "id": "foreground_color",
+      "label": "t:product_timeline.settings.foreground_color", 
+      "default": "#000000" 
+    },
+      { 
+      "type": "color",
+      "id": "icon_color",
+      "label": "t:product_timeline.settings.icon_color", 
+      "default": "#459A4E" 
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:product_timeline.settings.padding_top", 
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:product_timeline.settings.padding_bottom", 
+      "default": 36
+    }
+  ]
+}
+{% endschema %}
