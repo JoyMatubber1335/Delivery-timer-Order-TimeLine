@@ -54,9 +54,8 @@
 .popup-content {
   background: rgb(var(--color-background));
   background: var(--gradient-background);
-  width: 40%;
   margin: 100px auto;
-  padding: 45px;
+  padding: 20px;
   border-radius: 5px;
   position: relative;
 }
@@ -81,24 +80,5 @@
   .countdown-watch p {
     font-size: 17px;
     font-weight: bold;
-  }
-}
-@media screen and (max-width: 768px) {
-  .popup-content {
-    width: 60%;
-    padding: 40px;
-  }
-}
-@media screen and (max-width: 525px) {
-  .popup-content {
-    width: 80%;
-    padding: 40px;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .popup-content {
-    width: 90%;
-    padding: 40px;
   }
 }

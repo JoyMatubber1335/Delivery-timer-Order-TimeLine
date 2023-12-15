@@ -113,6 +113,40 @@ export const action = async ({ request, params }) => {
   //   });
   //   console.log(create);
   // }
+  console.log(formData.deliveryDate);
+
+  if (shopID) {
+    const productID = String(formData.productId);
+    const deliveryTime = new Date(`${formData.deliveryDate} UTC`);
+    console.log(deliveryTime);
+    // const deliveryTime = new Date(`${formData.deliveryDate} UTC`);
+
+    const existingProductReport = await prisma.productreport.findFirst({
+      where: { productId: productID, shopId: shopID },
+    });
+    console.log(existingProductReport);
+
+    if (existingProductReport) {
+      const update = await prisma.productreport.update({
+        where: { productId: productID },
+        data: {
+          shopId: shopID,
+          deliveryTime: deliveryTime,
+        },
+      });
+      console.log(update);
+    } else {
+      const create = await prisma.productreport.create({
+        data: {
+          productId: productID,
+          shopId: shopID,
+          deliveryTime: deliveryTime,
+        },
+      });
+      console.log(create);
+    }
+  }
+
   let orderStatusValue = null;
   let deliveryDateValue = null;
   console.log(formData.selectedCountry);
@@ -269,20 +303,37 @@ export default function AdditionalPage() {
 
   return (
     <Page>
-      <PageActions
-        primaryAction={
-          <Button
-            primary
-            tone="success"
-            variant="primary"
-            onClick={() => {
-              navigate("/app");
-            }}
-          >
-            Back
-          </Button>
-        }
-      />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: "1rem",
+          marginBottom: "1rem",
+        }}
+      >
+        <Button
+          primary
+          tone="success"
+          variant="primary"
+          onClick={() => {
+            navigate("/app/report");
+          }}
+        >
+          Report
+        </Button>
+
+        <Button
+          primary
+          tone="success"
+          variant="primary"
+          onClick={() => {
+            navigate("/app");
+          }}
+        >
+          Home
+        </Button>
+      </div>
+
       <ui-title-bar title="General Setup page" />
       <Layout>
         <Layout.Section>
@@ -320,8 +371,8 @@ export default function AdditionalPage() {
                   Product settings
                 </Text>
                 <Text as="h5" variant="bodySm" fontWeight="regular">
-                  Select free shipping country / Estimated delivery date/ Offer
-                  end timer
+                  Select free shipping country / Estimated delivery date / Order
+                  Ready date
                 </Text>{" "}
               </div>
               <Divider borderColor="border-inverse" borderWidth="0165" />
@@ -329,13 +380,12 @@ export default function AdditionalPage() {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "center",
                     alignItems: "center",
                     gap: "1rem",
                   }}
                 >
                   <Text as="h2" variant="headingMd">
-                    Selecte the shipping free country
+                    Selecte the shipping free country :
                   </Text>
                   <Select
                     value={selectedCountry}
@@ -349,18 +399,11 @@ export default function AdditionalPage() {
                     ]}
                   />
                 </div>
-
-                {/* Additional content based on the selected country */}
-                {selectedCountry && (
-                  <div>
-                    <p>You selected: {selectedCountry}</p>
-                  </div>
-                )}
               </div>{" "}
+              <Divider borderColor="border" borderWidth="0165" />
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "center",
                   alignItems: "center",
                   gap: "1rem",
                 }}
@@ -402,13 +445,10 @@ export default function AdditionalPage() {
                       </Card>
                     </Popover>
                   </Box>
-                  <p>
-                    Product ready selected date is:{" "}
-                    {selectedDate.toLocaleDateString()}
-                  </p>
                 </BlockStack>
                 {/* <p>date :{selectedDate.toLocaleDateString()}</p> */}
               </div>
+              <Divider borderColor="border" borderWidth="0165" />
               <div style={{ marginTop: "3rem" }}>
                 <Text as="h2" variant="headingMd">
                   Estimated delivery date :
@@ -421,9 +461,6 @@ export default function AdditionalPage() {
                   selected={selectedDates}
                 />
               </div>
-              <p>
-                <p>Delivery start date: {formatDate(selectedDates.start)}</p>
-              </p>
               <div style={{ marginTop: "1rem" }}>
                 <Button
                   primary
@@ -446,28 +483,6 @@ export default function AdditionalPage() {
               <Divider borderColor="border-inverse" borderWidth="0165" />
             </BlockStack>
             <BlockStack gap="300">
-              {/* {loaderData &&
-                loaderData?.product?.map((p) => (
-                  <Layout.Section key={p.id}>
-                    <Card>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        {p.image && (
-                          <Thumbnail
-                            source={p.image.src}
-                            alt={p.image.alt}
-                            size="large"
-                          />
-                        )}
-                        <div style={{ marginLeft: "20px", flex: "1" }}>
-                          <h1>{p.title}</h1>
-                          <h2>$ {p.variants[0].price}</h2>
-                          <h6>{p.body_html}</h6>
-                        </div>
-                      </div>
-                    </Card>
-                  </Layout.Section>
-                ))} */}
-
               {loaderData && loaderData?.product && (
                 <div
                   style={{
