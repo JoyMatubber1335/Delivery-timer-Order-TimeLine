@@ -2,7 +2,7 @@
 
 name = "Delivery-timer-order-timeline"
 client_id = "62de78c7cc6d1b1ee9901e2c585e0169"
-application_url = "https://sl-journey-fin-pipes.trycloudflare.com"
+application_url = "https://riverside-lounge-nam-answers.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "read_products,write_products"
 
 [auth]
 redirect_urls = [
-  "https://sl-journey-fin-pipes.trycloudflare.com/auth/callback",
-  "https://sl-journey-fin-pipes.trycloudflare.com/auth/shopify/callback",
-  "https://sl-journey-fin-pipes.trycloudflare.com/api/auth/callback",
-  "https://sl-journey-fin-pipes.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://riverside-lounge-nam-answers.trycloudflare.com/auth/callback",
+  "https://riverside-lounge-nam-answers.trycloudflare.com/auth/shopify/callback",
+  "https://riverside-lounge-nam-answers.trycloudflare.com/api/auth/callback",
+  "https://riverside-lounge-nam-answers.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]
