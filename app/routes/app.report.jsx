@@ -26,6 +26,7 @@ import {
   EmptySearchResult,
   Card,
   Banner,
+  PageActions,
 } from "@shopify/polaris";
 
 import { authenticate } from "../shopify.server";
@@ -707,97 +708,112 @@ export default function Dashboard() {
 
   return (
     <>
-      {banner && (
-        <Banner
-          title={`Product that has delivery upto ${formattedSelectedDate}`}
-          tone="warning"
-          //   onDismiss={handelBanner}
-        >
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+      <Page>
+        <PageActions
+          primaryAction={
+            <Button
+              primary
+              tone="success"
+              variant="primary"
+              onClick={() => {
+                navigate("/app");
+              }}
+            >
+              Home
+            </Button>
+          }
+        />
+        {banner && (
+          <Banner
+            title={`Product that has delivery upto ${formattedSelectedDate}`}
+            tone="warning"
+            //   onDismiss={handelBanner}
           >
-            {" "}
-            <p>Show the product that the delivery date is close to : </p>
-            <Select
-              label=""
-              options={options}
-              onChange={(value) => handleSelectChange(value)}
-              value={selectedDay}
-            />
-          </div>
+            <div
+              style={{
+                display: "flex",
+                gap: "1rem",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {" "}
+              <p>Show the product that the delivery date is close to : </p>
+              <Select
+                label=""
+                options={options}
+                onChange={(value) => handleSelectChange(value)}
+                value={selectedDay}
+              />
+            </div>
 
-          <div
-            style={{
-              display: "flex",
+            <div
+              style={{
+                display: "flex",
 
-              width: "50%",
+                width: "50%",
 
-              textAlign: "end",
+                textAlign: "end",
 
-              alignItems: "end",
+                alignItems: "end",
 
-              justifyContent: "end",
-            }}
-          >
-            {/* <Select
+                justifyContent: "end",
+              }}
+            >
+              {/* <Select
               label="Date range"
               options={options}
               onChange={(value) => handleSelectChange(value)}
               value={selectedDay}
             /> */}
-          </div>
-        </Banner>
-      )}
-
-      {loading ? (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "absulate",
-            top: "50%",
-            color: "red",
-          }}
-        >
-          <Spinner size="large" accessibilityLabel="Loading" />
-        </div>
-      ) : error ? (
-        <Page style={{ padding: "10px", backgroundColor: "#db1111" }}>
-          <Card style={{ padding: "10px", backgroundColor: "#db1111" }}>
-            {/* Something went wrong */}
-            <Spinner accessibilityLabel="Spinner example" size="large" />;
-          </Card>
-        </Page>
-      ) : edges?.length || queryValue ? (
-        <Page fullWidth={true}>
+            </div>
+          </Banner>
+        )}{" "}
+        {loading ? (
           <div
             style={{
               display: "flex",
-              alignContent: "center",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "20px",
-              fontWeight: "bold",
+              position: "absulate",
+              top: "50%",
+              color: "red",
             }}
           >
-            {/* <Card>Products data</Card> */}
+            <Spinner size="large" accessibilityLabel="Loading" />
           </div>
-          <br />
-          <div style={{ height: "300px", overflow: "auto" }}>
-            {renderOrdersTable()}
-          </div>
+        ) : error ? (
+          <Page style={{ padding: "10px", backgroundColor: "#db1111" }}>
+            <Card style={{ padding: "10px", backgroundColor: "#db1111" }}>
+              {/* Something went wrong */}
+              <Spinner accessibilityLabel="Spinner example" size="large" />;
+            </Card>
+          </Page>
+        ) : edges?.length || queryValue ? (
+          <Page fullWidth={true}>
+            <div
+              style={{
+                display: "flex",
+                alignContent: "center",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "20px",
+                fontWeight: "bold",
+              }}
+            >
+              {/* <Card>Products data</Card> */}
+            </div>
+            <br />
+            <div style={{ height: "300px", overflow: "auto" }}>
+              {renderOrdersTable()}
+            </div>
 
-          <br />
-        </Page>
-      ) : (
-        renderOrdersEmptyState()
-      )}
+            <br />
+          </Page>
+        ) : (
+          renderOrdersEmptyState()
+        )}
+      </Page>
     </>
   );
 }

@@ -147,10 +147,9 @@ export default function Index() {
   console.log("loaderData" + JSON.stringify(loaderData.products));
   const actionData = useActionData();
   console.log(JSON.stringify(actionData?.products));
-  
+
   const isLoading =
     ["loading", "submitting"].includes(nav.state) && nav.formMethod === "POST";
-
 
   const resourceName = {
     singular: "product",
@@ -457,7 +456,7 @@ export default function Index() {
                           );
                         }}
                       >
-                        Status
+                        Setting
                       </Button>
                       {/* </HorizontalStack> */}
                     </IndexTable.Cell>
