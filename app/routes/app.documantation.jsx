@@ -31,34 +31,47 @@ export default function AdditionalPage() {
             <Badge status="attention"> </Badge>
 
             <Text as="p" variant="bodyMd">
-              <b>1. Select the tracking progress bar status : </b>
-              On the tracking page, There are some default status if you add
-              then there is an option to add more statuses, you have to option
-              to remove and edit status.
+              <b>1. Search the product to setup: </b>
+              On the home page, there will be a search option if we went to find
+              the product, then search.And, click the <b>Settings</b> button to
+              go General Setup page.
             </Text>
 
             <Text as="p" variant="bodyMd">
-              <b>2. Search order : </b>
-              In the order tracking status page, search the order that you went
-              to update status.
+              <b>2. General Setup page : </b>
+              On the General Setup page, select the shipping-free country,
+              order-ready date, and Estimated delivery date, Then click the{" "}
+              <b>Save</b>
+              button .
+              <p>
+                Click the <b>View in store</b> button to manage the app in your
+                store.
+              </p>
             </Text>
 
             <Text as="p" variant="bodyMd">
-              <b>3. Status Setup : </b>
-              Click the <b>Status button</b> then open a new page with order
-              details and tracking information.
+              <b>3. Report page: </b>
+              <p>
+                The report page shows that the estimated delivery date is today,
+                tomorrow, and the upcoming 7 days. Then there will be one{" "}
+                <b>Edit</b>
+                button to Edit the estimated delivery date, shipping-free
+                country, and more.
+              </p>
             </Text>
-
             <Text as="p" variant="bodyMd">
-              <b>4. Tracking information : </b>
-              In the Tracking information section select the order current
-              status and Estimated Delivery Date for delivery the order.
+              <b>4. Theme editor setting </b>
+              <p>
+                Install the app, then set the end date and time for dispatch
+                today.
+              </p>
             </Text>
-
             <Text as="p" variant="bodyMd">
-              <b>5. View in Store : </b>
-              Click the <b>View in store</b> button to manage the app in your
-              store.
+              <b>4. Theme editor setting </b>
+              <p>
+                Install the app, then set the end date and time for dispatch
+                today.
+              </p>
             </Text>
           </Card>
         </Layout.Section>
