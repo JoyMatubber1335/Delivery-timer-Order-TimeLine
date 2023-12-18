@@ -66,13 +66,7 @@ export default function AdditionalPage() {
                 today.
               </p>
             </Text>
-            <Text as="p" variant="bodyMd">
-              <b>4. Theme editor setting </b>
-              <p>
-                Install the app, then set the end date and time for dispatch
-                today.
-              </p>
-            </Text>
+         
           </Card>
         </Layout.Section>
         <Layout.Section>
