@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import { DiamondAlertMinor } from "@shopify/polaris-icons";
+import {
+  DiamondAlertMinor,
+  EditMajor,
+  HomeFilledMinor,
+} from "@shopify/polaris-icons";
 import {
   Form,
   useActionData,
@@ -27,6 +31,7 @@ import {
   Card,
   Banner,
   PageActions,
+  Badge,
 } from "@shopify/polaris";
 
 import { authenticate } from "../shopify.server";
@@ -429,15 +434,8 @@ export default function Dashboard() {
   };
 
   const STATUS = {
-    FULFILLED: "success",
-    IN_PROGRESS: "attention",
-    ON_HOLD: "attention",
-    OPEN: "info",
-    PARTIALLY_FULFILLED: "info",
-    PENDING_FULFILLMENT: "info",
-    RESTOCKED: "critical",
-    SCHEDULED: "attention",
-    UNFULFILLED: "warning",
+    ACTIVE: "success",
+    DRAFT: "attention",
   };
 
   const getBadgeColor = (order) => {
@@ -613,12 +611,26 @@ export default function Dashboard() {
 
                       {renderTableCell(
                         // @ts-ignore
-                        product?.status
+                        <Badge tone={getBadgeColorFulfillment(product?.status)}>
+                          {product?.status}
+                        </Badge>
                       )}
 
                       {renderTableCell(
                         // @ts-ignore
-                        `${product?.totalInventory}  in stock`
+                        product?.totalInventory <= 0 ? (
+                          <p
+                            style={{ color: "red" }}
+                          >{`${product?.totalInventory} in stock`}</p>
+                        ) : product?.totalInventory <= 9 ? (
+                          <p
+                            style={{ color: "orange" }}
+                          >{`${product?.totalInventory} in stock`}</p>
+                        ) : (
+                          <p
+                            style={{ color: "green" }}
+                          >{`${product?.totalInventory} in stock`}</p>
+                        )
                       )}
 
                       {renderTableCell(
@@ -660,6 +672,7 @@ export default function Dashboard() {
                         <Button
                           textAlign="end"
                           primary
+                          icon={EditMajor}
                           variant="primary"
                           tone="success"
                           onClick={() => {
@@ -713,6 +726,7 @@ export default function Dashboard() {
           primaryAction={
             <Button
               primary
+              icon={HomeFilledMinor}
               tone="success"
               variant="primary"
               onClick={() => {

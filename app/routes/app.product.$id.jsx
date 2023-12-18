@@ -19,7 +19,13 @@ import {
   PageActions,
   Spinner,
 } from "@shopify/polaris";
-import { CalendarMajor } from "@shopify/polaris-icons";
+import {
+  CalendarMajor,
+  HomeFilledMinor,
+  ReportsMajor,
+  ViewMajor,
+  SaveMinor,
+} from "@shopify/polaris-icons";
 import { authenticate } from "~/shopify.server";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { json } from "@remix-run/node";
@@ -92,6 +98,7 @@ export const loader = async ({ request, params }) => {
     product,
     countries,
     productMetafiledValue,
+    shopInfo: shopData?.data[0],
   });
 };
 export const action = async ({ request, params }) => {
@@ -181,7 +188,7 @@ export const action = async ({ request, params }) => {
   return null;
 };
 
-export default function AdditionalPage() {
+export default function ProductDetailsPage() {
   const submit = useSubmit();
 
   const [isBannerDismissed, setIsBannerDismissed] = useState(false);
@@ -192,6 +199,8 @@ export default function AdditionalPage() {
   console.log(loaderData.product.id);
   console.log(loaderData.productMetafiledValue);
   const [selectedCountry, setSelectedCountry] = useState(null);
+
+  const shopDomain = loaderData.shopInfo.domain;
 
   const deliveryDatePick = JSON.parse(loaderData.productMetafiledValue);
   console.log(deliveryDatePick?.deliveryDate);
@@ -300,7 +309,10 @@ export default function AdditionalPage() {
 
   const isLoading =
     ["loading", "submitting"].includes(nav.state) && nav.formMethod === "POST";
-
+  const handelViewInStore = () => {
+    const openUrl = `https://${shopDomain}/admin/themes/current/editor?template=product&activateAppId=2c065e9f-5562-4a50-b3d2-efabc6b9d6d2/product-delivery-timeline`;
+    window.open(openUrl, "_blank");
+  };
   return (
     <Page>
       <div
@@ -313,6 +325,16 @@ export default function AdditionalPage() {
       >
         <Button
           primary
+          icon={ViewMajor}
+          tone="success"
+          variant="primary"
+          onClick={handelViewInStore}
+        >
+          View in store
+        </Button>
+        <Button
+          primary
+          icon={ReportsMajor}
           tone="success"
           variant="primary"
           onClick={() => {
@@ -324,6 +346,7 @@ export default function AdditionalPage() {
 
         <Button
           primary
+          icon={HomeFilledMinor}
           tone="success"
           variant="primary"
           onClick={() => {
@@ -464,6 +487,7 @@ export default function AdditionalPage() {
               <div style={{ marginTop: "1rem" }}>
                 <Button
                   primary
+                  icon={SaveMinor}
                   tone="success"
                   variant="primary"
                   onClick={handelSave}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DiamondAlertMinor } from "@shopify/polaris-icons";
+import { DiamondAlertMinor, SettingsMajor } from "@shopify/polaris-icons";
 import {
   Form,
   useActionData,
@@ -241,15 +241,8 @@ export default function Index() {
   };
 
   const STATUS = {
-    FULFILLED: "success",
-    IN_PROGRESS: "attention",
-    ON_HOLD: "attention",
-    OPEN: "info",
-    PARTIALLY_FULFILLED: "info",
-    PENDING_FULFILLMENT: "info",
-    RESTOCKED: "critical",
-    SCHEDULED: "attention",
-    UNFULFILLED: "warning",
+    ACTIVE: "success",
+    DRAFT: "attention",
   };
 
   const getBadgeColor = (order) => {
@@ -396,12 +389,43 @@ export default function Index() {
 
                     {renderTableCell(
                       // @ts-ignore
-                      product?.status
+                      // product?.status
+
+                      <Badge tone={getBadgeColorFulfillment(product?.status)}>
+                        {product?.status}
+                      </Badge>
                     )}
 
+                    {/* {renderTableCell(
+                      // @ts-ignore
+                      if(product?.totalInventory<=0){
+                        <p style={{color:"red"}}> `${product?.totalInventory}  in stock`</p>
+                      }
+                      else if(product?.totalInventory<=9){
+                        <p style={{color:"orange"}}> `${product?.totalInventory}  in stock`</p>
+
+                      }
+                      else{
+                        <p > `${product?.totalInventory}  in stock`</p>
+
+                      }
+                     
+                    )} */}
                     {renderTableCell(
                       // @ts-ignore
-                      `${product?.totalInventory}  in stock`
+                      product?.totalInventory <= 0 ? (
+                        <p
+                          style={{ color: "red" }}
+                        >{`${product?.totalInventory} in stock`}</p>
+                      ) : product?.totalInventory <= 9 ? (
+                        <p
+                          style={{ color: "orange" }}
+                        >{`${product?.totalInventory} in stock`}</p>
+                      ) : (
+                        <p
+                          style={{ color: "green" }}
+                        >{`${product?.totalInventory} in stock`}</p>
+                      )
                     )}
 
                     {renderTableCell(
@@ -443,6 +467,7 @@ export default function Index() {
                       <Button
                         textAlign="end"
                         primary
+                        icon={SettingsMajor}
                         variant="primary"
                         tone="success"
                         onClick={() => {
