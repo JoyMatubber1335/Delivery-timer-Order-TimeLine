@@ -2,7 +2,7 @@
 
 name = "Delivery-timer-order-timeline"
 client_id = "62de78c7cc6d1b1ee9901e2c585e0169"
-application_url = "https://across-colours-timely-peninsula.trycloudflare.com"
+application_url = "https://ward-recruiting-launches-frequencies.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "read_products,write_products"
 
 [auth]
 redirect_urls = [
-  "https://across-colours-timely-peninsula.trycloudflare.com/auth/callback",
-  "https://across-colours-timely-peninsula.trycloudflare.com/auth/shopify/callback",
-  "https://across-colours-timely-peninsula.trycloudflare.com/api/auth/callback",
-  "https://across-colours-timely-peninsula.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://ward-recruiting-launches-frequencies.trycloudflare.com/auth/callback",
+  "https://ward-recruiting-launches-frequencies.trycloudflare.com/auth/shopify/callback",
+  "https://ward-recruiting-launches-frequencies.trycloudflare.com/api/auth/callback",
+  "https://ward-recruiting-launches-frequencies.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]

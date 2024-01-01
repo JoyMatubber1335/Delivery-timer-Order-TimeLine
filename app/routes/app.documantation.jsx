@@ -18,7 +18,7 @@ export default function AdditionalPage() {
   };
   return (
     <Page>
-      <ui-title-bar title={`QuickTrack | Order Tracking `} />
+      <ui-title-bar title={`Timeline: Delivery date & More`} />
       <Layout>
         <Layout.Section>
           <Card>
@@ -66,7 +66,6 @@ export default function AdditionalPage() {
                 today.
               </p>
             </Text>
-         
           </Card>
         </Layout.Section>
         <Layout.Section>
@@ -79,7 +78,7 @@ export default function AdditionalPage() {
               <iframe
                 title="Countdown app set up isnstruction Video"
                 style={videoStyle}
-                src="https://www.youtube.com/embed/6k6VLRn8lZ0"
+                src="https://www.youtube.com/embed/667wvZK0ixY"
                 frameBorder="0"
                 allowFullScreen
               ></iframe>
